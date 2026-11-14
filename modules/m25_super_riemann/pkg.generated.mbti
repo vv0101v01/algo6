@@ -1,0 +1,133 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m25_super_riemann"
+
+import {
+  "dtt/m15_rg_hyperbolic",
+  "dtt/m20_polar2_jacobi_cohomology",
+  "dtt/m22_supercube_euler",
+}
+
+// Values
+pub fn ber_jacobian_equals_d_theta_certificate() -> Bool raise
+
+pub fn ber_line_bundle_cocycle_certificate() -> Bool raise
+
+pub fn ber_parity(SuperRank) -> Int32
+
+pub fn berezinian_gluing_coherence_certificate() -> Bool raise
+
+pub fn closed_supermoduli_dimension(Int32) -> (Int32, Int32) raise
+
+pub fn d_operator_transformation_law_certificate() -> Bool raise
+
+pub fn d_squared_equals_dz_certificate() -> Bool raise
+
+pub fn general_superconformal_constraint_certificate() -> Bool raise
+
+pub fn gpol_eq(GPol, GPol) -> Bool
+
+pub fn omega_is_d_inverse_by_transitions_certificate() -> Bool raise
+
+pub fn ribbon_genus_certificate() -> Bool raise
+
+pub fn srs_exact_sequence_certificate() -> Bool raise
+
+pub fn srs_exact_sequence_ranks() -> (SuperRank, SuperRank, SuperRank)
+
+pub fn superconformal_compose(SuperConformalMap, SuperConformalMap) -> (GPol, GPol) raise
+
+pub fn superconformal_weight_factor(@m20_polar2_jacobi_cohomology.Rat, Int32) -> @m22_supercube_euler.Grassmann raise
+
+pub fn supermoduli_dimension_certificate() -> Bool raise
+
+pub fn supermoduli_dimension_ns_ramond(Int32, Int32, Int32) -> (Int32, Int32) raise
+
+pub fn theta_const(Int32) -> GPol raise
+
+pub fn weighted_graph_genus_certificate() -> Bool raise
+
+pub fn weighted_ribbon_genus(RibbonGraph, Array[Int32]) -> Int32 raise
+
+pub fn weighted_ribbon_supermoduli_certificate() -> Bool raise
+
+// Errors
+pub(all) suberror SuperGeomError {
+  InvalidSuperField(String)
+  InvalidWeight(Int32)
+}
+
+// Types and methods
+pub(all) struct GPol {
+  k : Int32
+  coeffs : Array[@m22_supercube_euler.Grassmann]
+}
+pub fn GPol::add(Self, Self) -> Self raise
+pub fn GPol::antiderivative(Self) -> Self raise
+pub fn GPol::compose(Self, Self) -> Self raise
+pub fn GPol::constant(@m22_supercube_euler.Grassmann) -> Self
+pub fn GPol::d_super(Self) -> Self raise
+pub fn GPol::degree(Self) -> Int32
+pub fn GPol::derivative(Self) -> Self raise
+pub fn GPol::is_even(Self) -> Bool
+pub fn GPol::is_odd(Self) -> Bool
+pub fn GPol::is_zero(Self) -> Bool
+pub fn GPol::mul(Self, Self) -> Self raise
+pub fn GPol::scalar(Int32, @m20_polar2_jacobi_cohomology.Rat) -> Self
+pub fn GPol::sub(Self, Self) -> Self raise
+pub fn GPol::z(Int32) -> Self
+pub fn GPol::zero(Int32) -> Self
+
+pub(all) struct RibbonGraph {
+  vertices : Array[Array[Int32]]
+  num_edges : Int32
+}
+pub fn RibbonGraph::euler_characteristic(Self) -> Int32
+pub fn RibbonGraph::face_count(Self) -> Int32
+pub fn RibbonGraph::faces(Self) -> Array[Array[Int32]]
+pub fn RibbonGraph::genus(Self) -> Int32 raise
+pub fn RibbonGraph::make(Array[Array[Int32]], Int32) -> Self raise
+pub fn RibbonGraph::sigma(Self) -> Array[Int32]
+
+pub(all) struct SuperConformalMap {
+  k : Int32
+  f : GPol
+  h : GPol
+  w : GPol
+}
+pub fn SuperConformalMap::d_theta_prime(Self) -> GPol raise
+pub fn SuperConformalMap::from_data(GPol, GPol) -> Self raise
+pub fn SuperConformalMap::theta_image(Self) -> GPol raise
+pub fn SuperConformalMap::z_image(Self) -> GPol raise
+
+pub(all) struct SuperField {
+  even : @m15_rg_hyperbolic.Poly
+  odd : @m15_rg_hyperbolic.Poly
+}
+pub fn SuperField::d(Self) -> Self raise
+pub fn SuperField::dz(Self) -> Self raise
+pub fn SuperField::make(@m15_rg_hyperbolic.Poly, @m15_rg_hyperbolic.Poly) -> Self
+
+#derive(Eq)
+pub(all) struct SuperRank {
+  even : Int32
+  odd : Int32
+}
+pub fn SuperRank::add(Self, Self) -> Self
+pub fn SuperRank::equal(Self, Self) -> Bool
+pub fn SuperRank::not_equal(Self, Self) -> Bool
+
+pub(all) struct WeightedDualGraph {
+  genus_weights : Array[Int32]
+  marks : Array[Int32]
+  edges : Array[(Int32, Int32)]
+}
+pub fn WeightedDualGraph::first_betti(Self) -> Int32
+pub fn WeightedDualGraph::is_stable(Self) -> Bool
+pub fn WeightedDualGraph::make(Array[Int32], Array[Int32], Array[(Int32, Int32)]) -> Self raise
+pub fn WeightedDualGraph::supermoduli_dimension(Self) -> (Int32, Int32) raise
+pub fn WeightedDualGraph::supermoduli_dimension_with_ramond(Self, Int32) -> (Int32, Int32) raise
+pub fn WeightedDualGraph::total_genus(Self) -> Int32
+
+// Type aliases
+
+// Traits

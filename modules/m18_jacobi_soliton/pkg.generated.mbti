@@ -1,0 +1,95 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m18_jacobi_soliton"
+
+import {
+  "dtt/m20_polar2_jacobi_cohomology",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn bihamiltonian_compatible(JacobiStructure, JacobiStructure) -> Bool raise
+
+pub fn contact_jacobi() -> JacobiStructure raise
+
+pub fn hirota_bilinear_residual(TauFunction) -> Array[BilinearGroup] raise
+
+pub fn kdv_bilinear_verified(TauFunction) -> Bool raise
+
+pub fn kdv_tau(Array[@m20_polar2_jacobi_cohomology.Rat]) -> TauFunction raise
+
+pub fn monomial_basis(Int32, Int32) -> Array[MPoly] raise
+
+pub fn so3_lie_poisson() -> JacobiStructure raise
+
+pub fn soliton_phase_shift(@m20_polar2_jacobi_cohomology.Rat, @m20_polar2_jacobi_cohomology.Rat) -> @m20_polar2_jacobi_cohomology.Rat raise
+
+pub fn tau_term_count_certificate(Int32) -> Bool raise
+
+pub fn trivial_jacobi() -> JacobiStructure raise
+
+// Errors
+pub(all) suberror JacobiError {
+  InvalidStructure(String)
+  NotAntisymmetric
+  JacobiViolation
+}
+
+pub(all) suberror SolitonError {
+  InvalidWaveNumber(Int32)
+  ResonantDenominator
+}
+
+// Types and methods
+pub(all) struct BilinearGroup {
+  k_total : @m20_polar2_jacobi_cohomology.Rat
+  omega_total : @m20_polar2_jacobi_cohomology.Rat
+  mut residual : @m20_polar2_jacobi_cohomology.Rat
+}
+
+#derive(Eq, @debug.Debug)
+pub(all) struct ExpTerm {
+  coeff : @m20_polar2_jacobi_cohomology.Rat
+  k : @m20_polar2_jacobi_cohomology.Rat
+  omega : @m20_polar2_jacobi_cohomology.Rat
+}
+pub fn ExpTerm::equal(Self, Self) -> Bool
+pub fn ExpTerm::not_equal(Self, Self) -> Bool
+pub fn ExpTerm::to_repr(Self) -> @debug.Repr
+
+pub(all) struct JacobiStructure {
+  nvars : Int32
+  lambda : Array[Array[MPoly]]
+  e : Array[MPoly]
+}
+pub fn JacobiStructure::bracket(Self, MPoly, MPoly) -> MPoly raise
+pub fn JacobiStructure::e_apply(Self, MPoly) -> MPoly raise
+pub fn JacobiStructure::e_wedge_lambda(Self, Int32, Int32, Int32) -> MPoly raise
+pub fn JacobiStructure::jacobi_identity_certificate(Self) -> Bool raise
+pub fn JacobiStructure::lie_derivative_lambda(Self, Int32, Int32) -> MPoly raise
+pub fn JacobiStructure::make(Int32, Array[Array[MPoly]], Array[MPoly]) -> Self raise
+pub fn JacobiStructure::schouten_self(Self, Int32, Int32, Int32) -> MPoly raise
+pub fn JacobiStructure::structure_equations_certificate(Self) -> Bool raise
+
+pub(all) struct MPoly {
+  nvars : Int32
+  terms : Array[(Array[Int32], @m20_polar2_jacobi_cohomology.Rat)]
+}
+pub fn MPoly::add(Self, Self) -> Self raise
+pub fn MPoly::constant(Int32, @m20_polar2_jacobi_cohomology.Rat) -> Self raise
+pub fn MPoly::coord(Int32, Int32) -> Self raise
+pub fn MPoly::eq_poly(Self, Self) -> Bool
+pub fn MPoly::is_zero(Self) -> Bool
+pub fn MPoly::mul(Self, Self) -> Self raise
+pub fn MPoly::neg(Self) -> Self raise
+pub fn MPoly::partial(Self, Int32) -> Self raise
+pub fn MPoly::scale(Self, @m20_polar2_jacobi_cohomology.Rat) -> Self raise
+pub fn MPoly::sub(Self, Self) -> Self raise
+pub fn MPoly::zero(Int32) -> Self
+
+pub(all) struct TauFunction {
+  terms : Array[ExpTerm]
+}
+
+// Type aliases
+
+// Traits

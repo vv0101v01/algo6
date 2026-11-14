@@ -1,0 +1,66 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m26_super_schreier_sims"
+
+import {
+  "dtt/m23_obstruction_orbits",
+  "moonbitlang/core/bigint",
+}
+
+// Values
+pub fn body_odd_module_certificate() -> Bool raise
+
+pub fn even_signed_generators(Int32) -> Array[SignedPerm] raise
+
+pub fn even_signed_las_vegas_certificate(Int32, seed~ : UInt64) -> Bool raise
+
+pub fn hyperoctahedral_generators(Int32) -> Array[SignedPerm] raise
+
+pub fn hyperoctahedral_las_vegas_certificate(Int32, seed~ : UInt64) -> Bool raise
+
+pub fn hyperoctahedral_order(Int32) -> @bigint.BigInt
+
+pub fn las_vegas_schreier_sims(Int32, Array[@m23_obstruction_orbits.Perm], seed~ : UInt64, samples? : Int32, max_iterations? : Int32) -> LasVegasResult raise
+
+pub fn las_vegas_seed_independence_certificate(Int32) -> Bool raise
+
+pub fn signed_generators_to_perm(Array[SignedPerm]) -> Array[@m23_obstruction_orbits.Perm] raise
+
+pub fn super_grading_certificate(Int32) -> Bool raise
+
+pub fn super_two_layer_hierarchy_certificate(Int32) -> Bool raise
+
+pub fn supergroup_counting_collision_certificate() -> Bool raise
+
+pub fn supergroup_dimension(Int32, Int32) -> (Int32, Int32)
+
+// Errors
+pub(all) suberror SuperGroupError {
+  InvalidSignedPerm(String)
+  VerificationFailed(String)
+}
+
+// Types and methods
+pub(all) struct LasVegasResult {
+  chain : @m23_obstruction_orbits.SchreierSims
+  iterations : Int32
+  random_samples : Int32
+  verified : Bool
+}
+
+#derive(Eq)
+pub(all) struct SignedPerm {
+  perm : Array[Int32]
+  signs : Array[Int32]
+}
+pub fn SignedPerm::compose(Self, Self) -> Self raise
+pub fn SignedPerm::equal(Self, Self) -> Bool
+pub fn SignedPerm::identity(Int32) -> Self
+pub fn SignedPerm::inv(Self) -> Self
+pub fn SignedPerm::make(Array[Int32], Array[Int32]) -> Self raise
+pub fn SignedPerm::not_equal(Self, Self) -> Bool
+pub fn SignedPerm::parity(Self) -> Int32
+pub fn SignedPerm::to_perm(Self) -> @m23_obstruction_orbits.Perm raise
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,133 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m22_supercube_euler"
+
+import {
+  "dtt/m20_polar2_jacobi_cohomology",
+  "moonbitlang/core/bigint",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn berezinian(SuperMatrix) -> Grassmann raise
+
+pub fn berezinian_multiplicative(SuperMatrix, SuperMatrix) -> Bool raise
+
+pub fn euler_four_square_certificate() -> Bool
+
+pub fn hypercube_chain_complex(Int32) -> @m20_polar2_jacobi_cohomology.ChainComplex raise
+
+pub fn hypercube_contractible_certificate(Int32) -> Bool raise
+
+pub fn octonion_eight_square_certificate() -> Bool
+
+pub fn q8_cube_correspondence() -> Bool
+
+pub fn q8_table() -> Array[Array[Int32]]
+
+pub fn sedenion_from_ints(Array[Int32]) -> Sedenion
+
+pub fn sedenion_zero_divisor_certificate() -> Bool
+
+pub fn supermatrix_mul(SuperMatrix, SuperMatrix) -> SuperMatrix raise
+
+// Errors
+pub(all) suberror CubeError {
+  InvalidDimension(Int32)
+  InvalidTorus(String)
+}
+
+pub(all) suberror SuperError {
+  InvalidSuperMatrix(String)
+  InvalidGenerator(Int32)
+  NonInvertibleBody
+}
+
+// Types and methods
+pub(all) struct DiscreteTorus {
+  lx : Int32
+  ly : Int32
+  nx : Int32
+  ny : Int32
+}
+pub fn DiscreteTorus::hodge_h1_certificate(Self) -> Bool raise
+pub fn DiscreteTorus::make(Int32, Int32, Int32, Int32) -> Self raise
+pub fn DiscreteTorus::period_matrix(Self) -> GaussianRat raise
+pub fn DiscreteTorus::riemann_relations_certificate(Self) -> Bool raise
+
+#derive(Eq, @debug.Debug)
+pub(all) struct GaussianRat {
+  re : @m20_polar2_jacobi_cohomology.Rat
+  im : @m20_polar2_jacobi_cohomology.Rat
+}
+pub fn GaussianRat::equal(Self, Self) -> Bool
+pub fn GaussianRat::make(@m20_polar2_jacobi_cohomology.Rat, @m20_polar2_jacobi_cohomology.Rat) -> Self
+pub fn GaussianRat::mul(Self, Self) -> Self raise
+pub fn GaussianRat::not_equal(Self, Self) -> Bool
+pub fn GaussianRat::sub(Self, Self) -> Self raise
+pub fn GaussianRat::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Grassmann {
+  k : Int32
+  coeffs : Array[@m20_polar2_jacobi_cohomology.Rat]
+}
+pub fn Grassmann::add(Self, Self) -> Self raise
+pub fn Grassmann::eq(Self, Self) -> Bool
+pub fn Grassmann::generator(Int32, Int32) -> Self raise
+pub fn Grassmann::inv_even(Self) -> Self raise
+pub fn Grassmann::is_even(Self) -> Bool
+pub fn Grassmann::is_odd(Self) -> Bool
+pub fn Grassmann::is_zero(Self) -> Bool
+pub fn Grassmann::mul(Self, Self) -> Self raise
+pub fn Grassmann::neg(Self) -> Self
+pub fn Grassmann::partial(Self, Int32) -> Self raise
+pub fn Grassmann::scalar(Int32, @m20_polar2_jacobi_cohomology.Rat) -> Self
+pub fn Grassmann::sub(Self, Self) -> Self raise
+pub fn Grassmann::zero(Int32) -> Self
+
+#derive(Eq, @debug.Debug)
+pub(all) struct Octonion {
+  x : Quat
+  y : Quat
+}
+pub fn Octonion::equal(Self, Self) -> Bool
+pub fn Octonion::from_ints(Array[Int32]) -> Self
+pub fn Octonion::mul(Self, Self) -> Self
+pub fn Octonion::norm(Self) -> @bigint.BigInt
+pub fn Octonion::not_equal(Self, Self) -> Bool
+pub fn Octonion::to_repr(Self) -> @debug.Repr
+
+#derive(Eq, @debug.Debug)
+pub(all) struct Quat {
+  a : @bigint.BigInt
+  b : @bigint.BigInt
+  c : @bigint.BigInt
+  d : @bigint.BigInt
+}
+pub fn Quat::conj(Self) -> Self
+pub fn Quat::equal(Self, Self) -> Bool
+pub fn Quat::make(Int32, Int32, Int32, Int32) -> Self
+pub fn Quat::mul(Self, Self) -> Self
+pub fn Quat::norm(Self) -> @bigint.BigInt
+pub fn Quat::not_equal(Self, Self) -> Bool
+pub fn Quat::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Sedenion {
+  x : Octonion
+  y : Octonion
+}
+pub fn Sedenion::is_zero(Self) -> Bool
+pub fn Sedenion::mul(Self, Self) -> Self
+pub fn Sedenion::norm(Self) -> @bigint.BigInt
+
+pub(all) struct SuperMatrix {
+  k : Int32
+  p : Int32
+  q : Int32
+  entries : Array[Array[Grassmann]]
+}
+pub fn SuperMatrix::eq(Self, Self) -> Bool
+pub fn SuperMatrix::make(Int32, Int32, Int32, Array[Array[Grassmann]]) -> Self raise
+
+// Type aliases
+
+// Traits

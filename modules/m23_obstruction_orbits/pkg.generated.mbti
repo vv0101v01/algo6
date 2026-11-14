@@ -1,0 +1,86 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m23_obstruction_orbits"
+
+import {
+  "dtt/m20_polar2_jacobi_cohomology",
+  "moonbitlang/core/bigint",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn action_orbit(Array[Perm], Int32, (Perm, Int32) -> Int32) -> Array[Int32]
+
+pub fn alternating_generators(Int32) -> Array[Perm] raise
+
+pub fn dedup_perms(Array[Perm]) -> Array[Perm]
+
+pub fn invariant_separation_certificate(Array[Perm], Array[Int32], (Perm, Int32) -> Int32, (Int32) -> Int32, Int32, Int32) -> Bool
+
+pub fn orbit_transversal(Array[Perm], Int32, Int32) -> (Array[Int32], Array[Perm]) raise
+
+pub fn parity_obstruction_certificate(Int32) -> Bool raise
+
+pub fn perm_key(Perm) -> String
+
+pub fn q8_regular_group() -> SchreierSims raise
+
+pub fn schreier_sims(Int32, Array[Perm]) -> SchreierSims raise
+
+pub fn sign_homomorphism_certificate(Int32) -> Bool raise
+
+pub fn sliding_puzzle_obstruction_certificate(Int32) -> Bool raise
+
+pub fn symmetric_generators(Int32) -> Array[Perm] raise
+
+// Errors
+pub(all) suberror GroupError {
+  InvalidPermutation(String)
+  InvalidGroup(String)
+}
+
+// Types and methods
+#derive(Eq, @debug.Debug)
+pub(all) struct Perm {
+  images : Array[Int32]
+}
+pub fn Perm::apply(Self, Int32) -> Int32
+pub fn Perm::compose(Self, Self) -> Self raise
+pub fn Perm::cycle_count(Self) -> Int32
+pub fn Perm::equal(Self, Self) -> Bool
+pub fn Perm::identity(Int32) -> Self
+pub fn Perm::inv(Self) -> Self
+pub fn Perm::is_identity(Self) -> Bool
+pub fn Perm::make(Array[Int32]) -> Self raise
+pub fn Perm::not_equal(Self, Self) -> Bool
+pub fn Perm::sign(Self) -> Int32
+pub fn Perm::to_repr(Self) -> @debug.Repr
+
+pub(all) struct SchreierSims {
+  degree : Int32
+  levels : Array[StabilizerLevel]
+  order : @bigint.BigInt
+}
+pub fn SchreierSims::certificate(Self, Array[Perm]) -> Bool raise
+pub fn SchreierSims::contains(Self, Perm) -> Bool raise
+pub fn SchreierSims::elements(Self) -> Array[Perm] raise
+pub fn SchreierSims::polya_orbit_count(Self, Int32) -> @m20_polar2_jacobi_cohomology.Rat raise
+
+pub(all) struct SlidePuzzle {
+  n : Int32
+  tiles : Array[Int32]
+}
+pub fn SlidePuzzle::goal(Int32) -> Self
+pub fn SlidePuzzle::invariant(Self) -> Int32 raise
+pub fn SlidePuzzle::make(Int32, Array[Int32]) -> Self raise
+pub fn SlidePuzzle::moves(Self) -> Array[Self] raise
+
+pub(all) struct StabilizerLevel {
+  base_point : Int32
+  generators : Array[Perm]
+  orbit : Array[Int32]
+  transversal : Array[Perm]
+}
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,88 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m17_cat_symmetry"
+
+import {
+  "dtt/m20_polar2_jacobi_cohomology",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn canonical_cocycle(Int32, Int32) -> PointedCategory raise
+
+pub fn coboundary(Int32, Int32, Array[Int32]) -> Array[Int32] raise
+
+pub fn coboundary_coherence_certificate(Int32, Int32, Array[Int32]) -> Bool raise
+
+pub fn fibonacci_dimensions() -> Array[Surd] raise
+
+pub fn fibonacci_ring() -> FusionRing raise
+
+pub fn fibonacci_verlinde_data() -> (Array[Array[Surd]], Array[Surd]) raise
+
+pub fn frobenius_perron_eigenvector(FusionRing, Array[Surd]) -> Bool raise
+
+pub fn gauge_equivalence_certificate(PointedCategory, Array[Int32]) -> Bool raise
+
+pub fn h3_zn_certificate(Int32) -> (Bool, Bool) raise
+
+pub fn ising_dimensions() -> Array[Surd]
+
+pub fn ising_ring() -> FusionRing raise
+
+pub fn ising_verlinde_data() -> (Array[Array[Surd]], Array[Surd]) raise
+
+pub fn quantum_dimension_homomorphism(FusionRing, Array[Surd]) -> Bool raise
+
+pub fn verlinde_certificate(FusionRing, Array[Array[Surd]], Array[Surd]) -> Bool raise
+
+// Errors
+pub(all) suberror FusionError {
+  InvalidFusionData(String)
+  InvalidSurd(String)
+  VerlindeMismatch(Int32, Int32, Int32)
+}
+
+// Types and methods
+pub(all) struct FusionRing {
+  rank : Int32
+  coeffs : Array[Int32]
+}
+pub fn FusionRing::associativity_certificate(Self) -> Bool
+pub fn FusionRing::commutativity_certificate(Self) -> Bool
+pub fn FusionRing::duals(Self) -> Array[Int32] raise
+pub fn FusionRing::get(Self, Int32, Int32, Int32) -> Int32
+pub fn FusionRing::make(Int32, Array[Int32]) -> Self raise
+
+pub(all) struct PointedCategory {
+  n : Int32
+  modulus : Int32
+  omega : Array[Int32]
+}
+pub fn PointedCategory::get(Self, Int32, Int32, Int32) -> Int32
+pub fn PointedCategory::make(Int32, Int32, Array[Int32]) -> Self raise
+pub fn PointedCategory::pentagon_holds(Self) -> Bool
+
+#derive(Eq, @debug.Debug)
+pub(all) struct Surd {
+  a : @m20_polar2_jacobi_cohomology.Rat
+  b : @m20_polar2_jacobi_cohomology.Rat
+  d : Int32
+}
+pub fn Surd::add(Self, Self) -> Self raise
+pub fn Surd::div(Self, Self) -> Self raise
+pub fn Surd::equal(Self, Self) -> Bool
+pub fn Surd::from_rat(@m20_polar2_jacobi_cohomology.Rat, Int32) -> Self
+pub fn Surd::inv(Self) -> Self raise
+pub fn Surd::is_zero(Self) -> Bool
+pub fn Surd::make(@m20_polar2_jacobi_cohomology.Rat, @m20_polar2_jacobi_cohomology.Rat, Int32) -> Self
+pub fn Surd::mul(Self, Self) -> Self raise
+pub fn Surd::neg_surd(Self) -> Self
+pub fn Surd::not_equal(Self, Self) -> Bool
+pub fn Surd::scale_int(Self, Int32) -> Self raise
+pub fn Surd::sqrt_d(Int32) -> Self
+pub fn Surd::sub(Self, Self) -> Self raise
+pub fn Surd::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

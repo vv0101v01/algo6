@@ -1,0 +1,79 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m16_geo_berry"
+
+import {
+  "dtt/m20_polar2_jacobi_cohomology",
+}
+
+// Values
+pub fn chern_gauge_invariance_certificate(TorusGaugeField, Array[Int32]) -> Bool raise
+
+pub fn cube() -> Polyhedron
+
+pub fn gauss_bonnet(Polyhedron) -> GaussBonnetCertificate raise
+
+pub fn holonomy_gauge_invariance_certificate(GraphU1, Array[Int32], Array[Int32]) -> Bool raise
+
+pub fn icosahedron() -> Polyhedron
+
+pub fn landau_chern_one(Int32, Int32) -> TorusGaugeField raise
+
+pub fn octahedron() -> Polyhedron
+
+pub fn tetrahedron() -> Polyhedron
+
+pub fn zak_phase(TorusGaugeField) -> Int32 raise
+
+pub fn zak_z2_quantized(TorusGaugeField) -> (Bool, Int32) raise
+
+// Errors
+pub(all) suberror GeoError {
+  InvalidMetric(String)
+  InvalidPolyhedron(String)
+  InvalidConnection(String)
+}
+
+// Types and methods
+pub(all) struct FiniteMetric {
+  n : Int32
+  dist : Array[Array[Int32]]
+}
+pub fn FiniteMetric::is_between(Self, Int32, Int32, Int32) -> Bool
+pub fn FiniteMetric::make(Int32, Array[Array[Int32]]) -> Self raise
+
+pub(all) struct GaussBonnetCertificate {
+  euler_char : Int32
+  defects : Array[@m20_polar2_jacobi_cohomology.Rat]
+  gauss_bonnet_holds : Bool
+}
+
+pub(all) struct GraphU1 {
+  n : Int32
+  modulus : Int32
+  edges : Array[(Int32, Int32)]
+  link : Array[Int32]
+}
+pub fn GraphU1::cycle_holonomy(Self, Array[Int32]) -> Int32 raise
+pub fn GraphU1::gauge_transform(Self, Array[Int32]) -> Self raise
+pub fn GraphU1::make(Int32, Int32, Array[(Int32, Int32)], Array[Int32]) -> Self raise
+
+pub(all) struct Polyhedron {
+  vertices : Int32
+  faces : Array[Array[Int32]]
+}
+
+pub(all) struct TorusGaugeField {
+  lx : Int32
+  ly : Int32
+  modulus : Int32
+  ux : Array[Int32]
+  uy : Array[Int32]
+}
+pub fn TorusGaugeField::chern_number(Self) -> Int32 raise
+pub fn TorusGaugeField::gauge_transform(Self, Array[Int32]) -> Self raise
+pub fn TorusGaugeField::make(Int32, Int32, Int32, Array[Int32], Array[Int32]) -> Self raise
+pub fn TorusGaugeField::plaquette_flux(Self, Int32, Int32) -> Int32 raise
+
+// Type aliases
+
+// Traits

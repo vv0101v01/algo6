@@ -1,0 +1,90 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m21_symplectic_spectrum"
+
+import {
+  "dtt/m20_polar2_jacobi_cohomology",
+}
+
+// Values
+pub fn b_r_basis(FilteredComplex, Int32, Int32, Int32) -> @m20_polar2_jacobi_cohomology.RatMatrix raise
+
+pub fn darboux_basis(SymplecticForm) -> @m20_polar2_jacobi_cohomology.RatMatrix raise
+
+pub fn darboux_certificate(SymplecticForm, @m20_polar2_jacobi_cohomology.RatMatrix) -> Bool raise
+
+pub fn e_r_representatives(FilteredComplex, Int32, Int32, Int32) -> @m20_polar2_jacobi_cohomology.RatMatrix raise
+
+pub fn filtration_range(FilteredComplex) -> (Int32, Int32)
+
+pub fn is_coisotropic(SymplecticForm, @m20_polar2_jacobi_cohomology.RatMatrix) -> Bool raise
+
+pub fn is_hamiltonian(SymplecticForm, @m20_polar2_jacobi_cohomology.RatMatrix) -> Bool raise
+
+pub fn pfaffian(@m20_polar2_jacobi_cohomology.RatMatrix) -> @m20_polar2_jacobi_cohomology.Rat raise
+
+pub fn pfaffian_certificate(SymplecticForm) -> Bool raise
+
+pub fn reduced_dimension(SymplecticForm, @m20_polar2_jacobi_cohomology.RatMatrix) -> Int32 raise
+
+pub fn spectral_page(FilteredComplex, Int32) -> SpectralPage raise
+
+pub fn spectral_sequence(FilteredComplex) -> SpectralSequenceResult raise
+
+pub fn standard_symplectic(Int32) -> SymplecticForm raise
+
+pub fn symplectic_complement(SymplecticForm, @m20_polar2_jacobi_cohomology.RatMatrix) -> Array[Array[@m20_polar2_jacobi_cohomology.Rat]] raise
+
+pub fn symplectic_tower_e2_degenerate(DoubleComplex) -> Bool raise
+
+pub fn total_cohomology_dims(FilteredComplex) -> Array[Int32] raise
+
+// Errors
+pub(all) suberror SpectralError {
+  InvalidComplex(String)
+  NotFiltered
+}
+
+pub(all) suberror SymplecticError {
+  NotSkewSymmetric
+  DegenerateForm
+  OddDimension(Int32)
+  NotCoisotropic
+}
+
+// Types and methods
+pub(all) struct DoubleComplex {
+  dims : Array[Array[Int32]]
+  dv : Array[Array[@m20_polar2_jacobi_cohomology.RatMatrix]]
+  dh : Array[Array[@m20_polar2_jacobi_cohomology.RatMatrix]]
+}
+pub fn DoubleComplex::make(Array[Array[Int32]], Array[Array[@m20_polar2_jacobi_cohomology.RatMatrix]], Array[Array[@m20_polar2_jacobi_cohomology.RatMatrix]]) -> Self raise
+pub fn DoubleComplex::to_filtered_total(Self) -> FilteredComplex raise
+
+pub(all) struct FilteredComplex {
+  degree_dims : Array[Int32]
+  filtration : Array[Array[Int32]]
+  diff : Array[@m20_polar2_jacobi_cohomology.RatMatrix]
+}
+pub fn FilteredComplex::make(Array[Int32], Array[Array[Int32]], Array[@m20_polar2_jacobi_cohomology.RatMatrix]) -> Self raise
+
+pub(all) struct SpectralPage {
+  r : Int32
+  dims : Map[String, Int32]
+  total_dim : Int32
+}
+
+pub(all) struct SpectralSequenceResult {
+  pages : Array[SpectralPage]
+  stable_page : Int32
+  converged : Bool
+}
+
+pub(all) struct SymplecticForm {
+  dim : Int32
+  omega : @m20_polar2_jacobi_cohomology.RatMatrix
+}
+pub fn SymplecticForm::make(@m20_polar2_jacobi_cohomology.RatMatrix) -> Self raise
+
+// Type aliases
+
+// Traits

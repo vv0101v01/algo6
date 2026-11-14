@@ -1,0 +1,188 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m20_polar2_jacobi_cohomology"
+
+import {
+  "moonbitlang/core/bigint",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn boundary_matrix(SimplicialComplex, Int32) -> IntMatrix raise AlgebraError
+
+pub fn bracket_restriction_compatible(LocalBracket, LocalBracket, RatMatrix) -> Bool raise AlgebraError
+
+pub fn cech_cohomology(SimplicialComplex, Int32) -> AbelianGroup raise AlgebraError
+
+pub fn coboundary_matrix(SimplicialComplex, Int32) -> IntMatrix raise AlgebraError
+
+pub fn homology_invariants(IntMatrix, IntMatrix, Int32) -> AbelianGroup raise AlgebraError
+
+pub fn homology_representatives(ChainComplex, Int32) -> Array[Array[Rat]] raise AlgebraError
+
+pub fn homotopy_invariance_certificate(ChainComplex, ChainComplex, ChainMap, ChainMap, ChainHomotopy, Int32) -> Bool raise AlgebraError
+
+pub fn induced_homology_map(ChainComplex, ChainComplex, ChainMap, Int32) -> RatMatrix raise AlgebraError
+
+pub fn is_chain_homotopy(ChainComplex, ChainComplex, ChainMap, ChainMap, ChainHomotopy) -> Bool raise AlgebraError
+
+pub fn is_chain_map(ChainComplex, ChainComplex, ChainMap) -> Bool raise AlgebraError
+
+pub fn jacobi_sheaf_certificate(FiniteCoverSheaf, Int32, Array[RatMatrix], Array[LocalBracket], Array[LocalBracket]) -> JacobiSheafCertificate raise AlgebraError
+
+pub fn nerve_of_cover(Array[Array[Int32]]) -> SimplicialComplex raise AlgebraError
+
+pub fn polar_boundary_matrix(SimplicialComplex, Int32, Array[Array[Int32]]) -> IntMatrix raise AlgebraError
+
+// Errors
+pub(all) suberror AlgebraError {
+  ZeroDenominator
+  MatrixShapeMismatch(Int32, Int32, Int32, Int32)
+  MatrixDataLength(Int32, Int32)
+  NonSquareDeterminant(Int32, Int32)
+  IndexOutOfBounds(Int32, Int32)
+  InconsistentDimensions(String)
+}
+
+// Types and methods
+pub(all) struct AbelianGroup {
+  free_rank : Int32
+  torsion : Array[@bigint.BigInt]
+}
+
+pub(all) struct ChainComplex {
+  dims : Array[Int32]
+  partials : Array[IntMatrix]
+}
+pub fn ChainComplex::homology(Self, Int32) -> AbelianGroup raise AlgebraError
+pub fn ChainComplex::make(Array[Int32], Array[IntMatrix]) -> Self raise AlgebraError
+
+pub(all) struct ChainHomotopy {
+  mats : Array[IntMatrix]
+}
+
+pub(all) struct ChainMap {
+  mats : Array[IntMatrix]
+}
+
+pub(all) struct FiniteCoverSheaf {
+  patch_dims : Array[Int32]
+  inter_i : Array[Int32]
+  inter_j : Array[Int32]
+  inter_dims : Array[Int32]
+  res_from_i : Array[RatMatrix]
+  res_from_j : Array[RatMatrix]
+}
+pub fn FiniteCoverSheaf::cech_delta0(Self) -> RatMatrix raise AlgebraError
+pub fn FiniteCoverSheaf::make(Array[Int32], Array[Int32], Array[Int32], Array[Int32], Array[RatMatrix], Array[RatMatrix]) -> Self raise AlgebraError
+pub fn FiniteCoverSheaf::sheaf_certificate(Self, Int32, Array[RatMatrix]) -> SheafCertificate raise AlgebraError
+
+pub(all) struct IntMatrix {
+  rows : Int32
+  cols : Int32
+  data : Array[@bigint.BigInt]
+}
+pub fn IntMatrix::from_ints(Int32, Int32, Array[Int32]) -> Self raise AlgebraError
+pub fn IntMatrix::get(Self, Int32, Int32) -> @bigint.BigInt raise AlgebraError
+pub fn IntMatrix::make(Int32, Int32, Array[@bigint.BigInt]) -> Self raise AlgebraError
+pub fn IntMatrix::set(Self, Int32, Int32, @bigint.BigInt) -> Unit raise AlgebraError
+pub fn IntMatrix::smith_normal_form(Self) -> SmithForm
+pub fn IntMatrix::to_rat(Self) -> RatMatrix raise AlgebraError
+pub fn IntMatrix::zero(Int32, Int32) -> Self raise AlgebraError
+
+pub(all) struct JacobiSheafCertificate {
+  sheaf : SheafCertificate
+  local_jacobi : Bool
+  restriction_bracket : Bool
+}
+
+pub(all) enum LinearSolution {
+  Inconsistent
+  Solution(Array[Rat], Array[Array[Rat]])
+}
+
+pub(all) struct LocalBracket {
+  dim : Int32
+  constants : Array[Rat]
+}
+pub fn LocalBracket::get(Self, Int32, Int32, Int32) -> Rat raise AlgebraError
+pub fn LocalBracket::jacobi_identity_holds(Self) -> Bool raise AlgebraError
+pub fn LocalBracket::make(Int32, Array[Rat]) -> Self raise AlgebraError
+
+pub(all) struct RRef {
+  matrix : RatMatrix
+  rank : Int32
+  pivots : Array[Int32]
+}
+
+#derive(Eq, Hash, @debug.Debug)
+pub(all) struct Rat {
+  num : @bigint.BigInt
+  den : @bigint.BigInt
+}
+pub fn Rat::add(Self, Self) -> Self raise AlgebraError
+pub fn Rat::compare(Self, Self) -> Int32
+pub fn Rat::div(Self, Self) -> Self raise AlgebraError
+pub fn Rat::equal(Self, Self) -> Bool
+pub fn Rat::frac(Int32, Int32) -> Self raise AlgebraError
+pub fn Rat::from_int(Int32) -> Self
+pub fn Rat::hash(Self) -> Int32
+pub fn Rat::hash_combine(Self, Hasher) -> Unit
+pub fn Rat::inv(Self) -> Self raise AlgebraError
+pub fn Rat::is_zero(Self) -> Bool
+pub fn Rat::make(@bigint.BigInt, @bigint.BigInt) -> Self raise AlgebraError
+pub fn Rat::mul(Self, Self) -> Self raise AlgebraError
+pub fn Rat::neg(Self) -> Self
+pub fn Rat::not_equal(Self, Self) -> Bool
+pub fn Rat::one() -> Self
+pub fn Rat::output(Self, &Logger) -> Unit
+pub fn Rat::sign(Self) -> Int32
+pub fn Rat::sub(Self, Self) -> Self raise AlgebraError
+pub fn Rat::to_repr(Self) -> @debug.Repr
+pub fn Rat::to_string(Self) -> String
+pub fn Rat::zero() -> Self
+pub impl Show for Rat
+
+pub(all) struct RatMatrix {
+  rows : Int32
+  cols : Int32
+  data : Array[Rat]
+}
+pub fn RatMatrix::add(Self, Self) -> Self raise AlgebraError
+pub fn RatMatrix::copy(Self) -> Self
+pub fn RatMatrix::det(Self) -> Rat raise AlgebraError
+pub fn RatMatrix::from_ints(Int32, Int32, Array[Int32]) -> Self raise AlgebraError
+pub fn RatMatrix::get(Self, Int32, Int32) -> Rat raise AlgebraError
+pub fn RatMatrix::identity(Int32) -> Self raise AlgebraError
+pub fn RatMatrix::make(Int32, Int32, Array[Rat]) -> Self raise AlgebraError
+pub fn RatMatrix::mul(Self, Self) -> Self raise AlgebraError
+pub fn RatMatrix::mul_vec(Self, Array[Rat]) -> Array[Rat] raise AlgebraError
+pub fn RatMatrix::nullspace(Self) -> Array[Array[Rat]] raise AlgebraError
+pub fn RatMatrix::rank(Self) -> Int32 raise AlgebraError
+pub fn RatMatrix::rref(Self) -> RRef raise AlgebraError
+pub fn RatMatrix::scale(Self, Rat) -> Self raise AlgebraError
+pub fn RatMatrix::set(Self, Int32, Int32, Rat) -> Unit raise AlgebraError
+pub fn RatMatrix::solve(Self, Array[Rat]) -> LinearSolution raise AlgebraError
+pub fn RatMatrix::sub(Self, Self) -> Self raise AlgebraError
+pub fn RatMatrix::transpose(Self) -> Self raise AlgebraError
+pub fn RatMatrix::zero(Int32, Int32) -> Self raise AlgebraError
+
+pub(all) struct SheafCertificate {
+  locality : Bool
+  gluing : Bool
+  h0_dim : Int32
+  global_dim : Int32
+}
+
+pub(all) struct SimplicialComplex {
+  simplices : Array[Array[Array[Int32]]]
+}
+pub fn SimplicialComplex::from_facets(Array[Array[Int32]]) -> Self raise AlgebraError
+
+pub(all) struct SmithForm {
+  factors : Array[@bigint.BigInt]
+  rank : Int32
+}
+
+// Type aliases
+
+// Traits

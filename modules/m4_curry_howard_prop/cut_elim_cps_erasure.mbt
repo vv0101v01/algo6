@@ -445,8 +445,8 @@ pub fn synthesize_cps_peirce(a_ty : CHType, b_ty : CHType) -> CHTerm {
   // Inside λk (#0) -> λh (#0, k=#1) -> λa (#0, h=#1, k=#2) -> λ_ (#0, a=#1, h=#2, k=#3):
   let const_a = PTLam(h_ty, PTVar(1))
   let abort_b = PTAbsurd(b_ty, PTApp(PTVar(2), const_a))
-  let fake_ab = PTLam(a_ty, abort_b)
-  let peirce_fn = PTLam(h_ty, PTApp(PTVar(0), fake_ab))
+  let exfalso_ab = PTLam(a_ty, abort_b)
+  let peirce_fn = PTLam(h_ty, PTApp(PTVar(0), exfalso_ab))
   PTLam(k_ty, PTApp(PTVar(0), peirce_fn))
 }
 

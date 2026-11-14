@@ -1,0 +1,129 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m15_rg_hyperbolic"
+
+import {
+  "dtt/m20_polar2_jacobi_cohomology",
+}
+
+// Values
+pub fn adjacency_rat(Graph) -> @m20_polar2_jacobi_cohomology.RatMatrix raise
+
+pub fn algebraic_minpoly(Poly, Poly) -> Poly raise
+
+pub fn all_pairs_distance(Graph) -> Array[Array[Int32]]
+
+pub fn cartesian_product(Graph, Graph) -> Graph raise
+
+pub fn characteristic_poly(Graph) -> Poly raise
+
+pub fn classify_tessellation(Int32, Int32) -> Geometry raise
+
+pub fn cycle_graph(Int32) -> Graph raise
+
+pub fn decimate_bilayer(@m20_polar2_jacobi_cohomology.RatMatrix, @m20_polar2_jacobi_cohomology.Rat, @m20_polar2_jacobi_cohomology.Rat) -> LayerDecimation raise
+
+pub fn decimate_coupling(@m20_polar2_jacobi_cohomology.Rat, Int32) -> @m20_polar2_jacobi_cohomology.Rat raise
+
+pub fn diamond_critical_isolation() -> (Int32, Int32) raise
+
+pub fn diamond_critical_linearization() -> DiamondCriticalData raise
+
+pub fn diamond_critical_poly() -> Poly
+
+pub fn diamond_fixed_point_poly() -> Poly
+
+pub fn diamond_rg(@m20_polar2_jacobi_cohomology.Rat) -> @m20_polar2_jacobi_cohomology.Rat raise
+
+pub fn euler_density_per_face(Int32, Int32) -> @m20_polar2_jacobi_cohomology.Rat raise
+
+pub fn generalized_petersen(Int32, Int32) -> Graph raise
+
+pub fn gromov_delta(Graph) -> @m20_polar2_jacobi_cohomology.Rat raise
+
+pub fn ising_decimation_data(@m20_polar2_jacobi_cohomology.Rat, Int32) -> (Int32, @m20_polar2_jacobi_cohomology.Rat) raise
+
+pub fn mobius_kantor_bolza() -> Graph raise
+
+pub fn path_graph(Int32) -> Graph raise
+
+pub fn resultant(Poly, Poly) -> @m20_polar2_jacobi_cohomology.Rat raise
+
+pub fn rg_semigroup_certificate(@m20_polar2_jacobi_cohomology.Rat, Int32, Int32) -> Bool raise
+
+pub fn stacked_charpoly(Graph, Graph) -> Poly raise
+
+pub fn sturm_root_count(Poly, @m20_polar2_jacobi_cohomology.Rat, @m20_polar2_jacobi_cohomology.Rat) -> Int32 raise
+
+pub fn sturm_sequence(Poly) -> Array[Poly] raise
+
+pub fn tessellation_curvature(Int32, Int32) -> @m20_polar2_jacobi_cohomology.Rat raise
+
+// Errors
+pub(all) suberror LatticeError {
+  InvalidTessellation(Int32, Int32)
+  GraphIndex(Int32, Int32)
+  EmptyGraph
+  SingularResolvent
+}
+
+pub(all) suberror RGError {
+  InvalidBlockFactor(Int32)
+  ZeroPolynomialDivision
+  NonSquareFreeSturm
+  SingularQuotientElement
+  InvalidCouplingDomain
+}
+
+// Types and methods
+pub(all) struct DiamondCriticalData {
+  critical_poly : Poly
+  roots_in_unit_interval : Int32
+  eigenvalue_minpoly : Poly
+}
+
+#derive(Eq)
+pub(all) enum Geometry {
+  Spherical
+  Euclidean
+  Hyperbolic
+}
+pub fn Geometry::equal(Self, Self) -> Bool
+pub fn Geometry::not_equal(Self, Self) -> Bool
+
+pub(all) struct Graph {
+  n : Int32
+  adj : Array[Array[Int32]]
+}
+pub fn Graph::make(Int32, Array[(Int32, Int32)]) -> Self raise
+
+pub(all) struct LayerDecimation {
+  effective_adjacency : @m20_polar2_jacobi_cohomology.RatMatrix
+  feshbach_verified : Bool
+}
+
+pub(all) struct Poly {
+  coeffs : Array[@m20_polar2_jacobi_cohomology.Rat]
+}
+pub fn Poly::add(Self, Self) -> Self raise
+pub fn Poly::coeff(Self, Int32) -> @m20_polar2_jacobi_cohomology.Rat
+pub fn Poly::constant(@m20_polar2_jacobi_cohomology.Rat) -> Self
+pub fn Poly::degree(Self) -> Int32
+pub fn Poly::derivative(Self) -> Self raise
+pub fn Poly::div_mod(Self, Self) -> (Self, Self) raise
+pub fn Poly::eval(Self, @m20_polar2_jacobi_cohomology.Rat) -> @m20_polar2_jacobi_cohomology.Rat raise
+pub fn Poly::gcd(Self, Self) -> Self raise
+pub fn Poly::is_zero(Self) -> Bool
+pub fn Poly::make(Array[@m20_polar2_jacobi_cohomology.Rat]) -> Self
+pub fn Poly::monic(Self) -> Self raise
+pub fn Poly::mul(Self, Self) -> Self raise
+pub fn Poly::one() -> Self
+pub fn Poly::rem(Self, Self) -> Self raise
+pub fn Poly::scale(Self, @m20_polar2_jacobi_cohomology.Rat) -> Self raise
+pub fn Poly::squarefree_part(Self) -> Self raise
+pub fn Poly::sub(Self, Self) -> Self raise
+pub fn Poly::x() -> Self
+pub fn Poly::zero() -> Self
+
+// Type aliases
+
+// Traits

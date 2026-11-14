@@ -1,0 +1,72 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m19_master_duality"
+
+import {
+  "dtt/m20_polar2_jacobi_cohomology",
+}
+
+// Values
+pub fn amplitude_damping_full() -> KrausChannel raise
+
+pub fn is_psd_principal_minors(@m20_polar2_jacobi_cohomology.RatMatrix) -> Bool raise
+
+pub fn kw_dual(@m20_polar2_jacobi_cohomology.Rat) -> @m20_polar2_jacobi_cohomology.Rat raise
+
+pub fn kw_involution_certificate(@m20_polar2_jacobi_cohomology.Rat) -> Bool raise
+
+pub fn kw_self_dual_equation_certificate(@m20_polar2_jacobi_cohomology.Rat) -> Bool raise
+
+pub fn kw_self_dual_poly() -> Array[Int32]
+
+pub fn lp_duality_certificate(@m20_polar2_jacobi_cohomology.RatMatrix, Array[@m20_polar2_jacobi_cohomology.Rat], Array[@m20_polar2_jacobi_cohomology.Rat], Array[@m20_polar2_jacobi_cohomology.Rat], Array[@m20_polar2_jacobi_cohomology.Rat]) -> LPDualityCertificate raise
+
+pub fn markov_duality_certificate(@m20_polar2_jacobi_cohomology.RatMatrix, @m20_polar2_jacobi_cohomology.RatMatrix, @m20_polar2_jacobi_cohomology.RatMatrix) -> Bool raise
+
+// Errors
+pub(all) suberror DualityError {
+  InvalidLP(String)
+  InvalidDuality(String)
+}
+
+pub(all) suberror MasterError {
+  InvalidGenerator(String)
+  ReducibleChain(Int32)
+  InvalidChannel(String)
+}
+
+// Types and methods
+pub(all) struct EntropyProductionCertificate {
+  nonnegative : Bool
+  zero : Bool
+  irreversible_pairs : Int32
+}
+
+pub(all) struct KrausChannel {
+  dim : Int32
+  kraus : Array[@m20_polar2_jacobi_cohomology.RatMatrix]
+}
+pub fn KrausChannel::choi(Self) -> @m20_polar2_jacobi_cohomology.RatMatrix raise
+pub fn KrausChannel::completely_positive(Self) -> Bool raise
+pub fn KrausChannel::make(Int32, Array[@m20_polar2_jacobi_cohomology.RatMatrix]) -> Self raise
+pub fn KrausChannel::trace_preserving(Self) -> Bool raise
+
+pub(all) struct LPDualityCertificate {
+  primal_feasible : Bool
+  dual_feasible : Bool
+  strong_duality : Bool
+  complementary_slackness : Bool
+  objective : @m20_polar2_jacobi_cohomology.Rat
+}
+
+pub(all) struct MarkovGenerator {
+  n : Int32
+  rates : @m20_polar2_jacobi_cohomology.RatMatrix
+}
+pub fn MarkovGenerator::detailed_balance(Self, Array[@m20_polar2_jacobi_cohomology.Rat]) -> Bool raise
+pub fn MarkovGenerator::entropy_production(Self, Array[@m20_polar2_jacobi_cohomology.Rat]) -> EntropyProductionCertificate raise
+pub fn MarkovGenerator::from_offdiag(@m20_polar2_jacobi_cohomology.RatMatrix) -> Self raise
+pub fn MarkovGenerator::stationary(Self) -> Array[@m20_polar2_jacobi_cohomology.Rat] raise
+
+// Type aliases
+
+// Traits

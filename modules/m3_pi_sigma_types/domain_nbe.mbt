@@ -733,8 +733,10 @@ fn quote_untyped(depth : Int32, v : Val) -> CoreTm {
       let v_var = fresh_neutral_var(depth, dom)
       CLam(x, q_dom, quote_untyped(depth + 1, eval_clos(clos, v_var)))
     }
-    // Untyped readback has no type information: emit a placeholder motive annotation
-    // (typed readback `quote_val` at `VSigma` reconstructs the true motive).
+    // Untyped readback has no type information. The CPair motive annotation is
+    // erased: synth_term/check_term deliberately ignore it and derive the Sigma
+    // type from the components, so CUnit is a valid erased annotation here.
+    // Typed readback `quote_val` at `VSigma` reconstructs the true dependent motive.
     VPair(a, b) =>
       CPair(quote_untyped(depth, a), quote_untyped(depth, b), CUnit)
     VUnit => CUnit

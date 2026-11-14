@@ -1,0 +1,7 @@
+import {
+  "moonbitlang/core/bigint",
+  "moonbitlang/core/quickcheck/splitmix",
+  "dtt/m20_polar2_jacobi_cohomology" @m20,
+  "dtt/m22_supercube_euler" @m22,
+  "dtt/m23_obstruction_orbits" @m23,
+}

@@ -1,0 +1,34 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m24_unified_bridges"
+
+import {
+  "dtt/m16_geo_berry",
+  "dtt/m20_polar2_jacobi_cohomology",
+  "dtt/m21_symplectic_spectrum",
+}
+
+// Values
+pub fn berry_riemann_period_bridge(Int32, Int32) -> Bool raise
+
+pub fn berry_symplectic_volume_certificate(@m16_geo_berry.TorusGaugeField) -> Bool raise
+
+pub fn categorical_h3_obstruction_orbit_certificate(Int32) -> Bool raise
+
+pub fn diamond_rg_spectral_bridge() -> Bool raise
+
+pub fn rg_linearized_complex(@m20_polar2_jacobi_cohomology.Rat) -> @m21_symplectic_spectrum.FilteredComplex raise
+
+pub fn rg_spectral_marginal_certificate() -> Bool raise
+
+pub fn unified_fusion_certificate() -> Bool raise
+
+// Errors
+pub(all) suberror BridgeError {
+  BridgeMismatch(String)
+}
+
+// Types and methods
+
+// Type aliases
+
+// Traits

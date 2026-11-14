@@ -1,0 +1,38 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m27_spectral_differentials"
+
+import {
+  "dtt/m20_polar2_jacobi_cohomology",
+  "dtt/m21_symplectic_spectrum",
+}
+
+// Values
+pub fn d_r_squared_zero_certificate(@m21_symplectic_spectrum.FilteredComplex, Int32) -> Bool raise
+
+pub fn differential_page(@m21_symplectic_spectrum.FilteredComplex, Int32) -> Array[DifferentialMatrix] raise
+
+pub fn explicit_differential_certificate(@m21_symplectic_spectrum.FilteredComplex, Int32) -> Bool raise
+
+pub fn next_page_is_homology_certificate(@m21_symplectic_spectrum.FilteredComplex, Int32) -> Bool raise
+
+pub fn spectral_differential(@m21_symplectic_spectrum.FilteredComplex, Int32, Int32, Int32) -> DifferentialMatrix raise
+
+// Errors
+pub(all) suberror DifferentialError {
+  InvalidPage(Int32)
+  InconsistentLift(String)
+}
+
+// Types and methods
+pub(all) struct DifferentialMatrix {
+  r : Int32
+  p : Int32
+  q : Int32
+  matrix : @m20_polar2_jacobi_cohomology.RatMatrix
+  source_dim : Int32
+  target_dim : Int32
+}
+
+// Type aliases
+
+// Traits

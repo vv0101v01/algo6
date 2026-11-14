@@ -1,0 +1,24 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dtt/m28_super_fusion"
+
+// Values
+pub fn parity_obstruction_super_bridge(Int32) -> Bool raise
+
+pub fn superconformal_ber_spectral_bridge() -> Bool raise
+
+pub fn superconformal_weight_dr_shift_bridge() -> Bool raise
+
+pub fn unified_super_fusion_certificate() -> Bool raise
+
+pub fn weighted_graph_spectral_hierarchy_bridge() -> Bool raise
+
+// Errors
+pub(all) suberror SuperFusionError {
+  FusionMismatch(String)
+}
+
+// Types and methods
+
+// Type aliases
+
+// Traits
