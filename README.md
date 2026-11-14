@@ -275,10 +275,11 @@ Berezinian 對超黎曼面之推廣、閉合超空間、超坐標系統、權重
 - `moon build`：通過（不使用 `--release`）。
 - 新增 `.github/workflows/ci.yml`：push/PR 自動安裝最新穩定 MoonBit 並跑 fmt/check/build。
 
-### 推送狀態
-- 目標：`https://github.com/vv0101v01/algo6`（先前 `git ls-remote` 確認空倉）。
-- GitHub connector 不支援；先前對話明文暴露嘅 token **不應再用**，已提醒撤銷重發。
-- 本回合先本地 commit；無憑證推送嘗試結果記錄於下方流水帳。待用戶提供新 token／安全憑證後推送。
+### 推送狀態（已成功）
+- 已成功推送至 `https://github.com/vv0101v01/algo6`（`main`），完整 m1–m28 代碼＋`.github/workflows/ci.yml`。
+- 沙盒 `.git` 於回合之間丟失，已從 `origin/dependent` 重建歷史，再以當前工作樹重新 commit 推送；內容冇丟。
+- 使用用戶提供嘅一次性 token 推送；token **唔會寫入任何檔案或 git config**。舊 token 已於對話暴露，請撤銷重發。
+- GitHub Actions CI 已隨 push 觸發（fmt/check/build）。
 
 ### 遺留待辦
 - 各模組 README.md（m15–m28）仍待用戶批准補齊；`moon.mod` 已引用但檔案未建。
